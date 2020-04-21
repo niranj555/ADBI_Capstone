@@ -251,5 +251,3 @@ class Router():
 
 if __name__ == '__main__':
     print('route.py')
-    router = Router('instances/my2.txt')
-    print(router.get_demand())
