@@ -21,6 +21,7 @@ class Router():
         self.generate_student_near_stops()
         self.generate_stop_near_stops()
         self.generate_stop_near_students()
+        self.global_path_list, self.global_students_dict=self.route_local_search()
 
 
     def process_file(self, fn):
@@ -104,7 +105,7 @@ class Router():
     def route_local_search(self):
 
         ## find route algorithm
-        global_stops = list(self.stops.copy().keys())# [1:] - remove base stop 0 which is unnecessary
+        global_stops = list(self.stops.copy().keys())[1:] #- remove base stop 0 which is unnecessary
         base_stop = global_stops[0]
         global_path_list = []
 
@@ -243,7 +244,6 @@ class Router():
         return(x)
 
     def get_demand(self):
-        self.global_path_list,self.global_students_dict=self.route_local_search()
         self.demand = [0] * self.no_of_stops
         for i in self.global_students_dict:
             self.demand[self.global_students_dict[i]]+=1
