@@ -14,7 +14,9 @@ class Router():
         self.stop_near_stops = None
         self.global_path_list = None
         self.global_students_dict = None
-
+        self.stop_near_stops1=None
+        self.no_of_stops=None
+        self.demand=None
         self.process_file(routes_fn)
         self.generate_student_near_stops()
         self.generate_stop_near_stops()
@@ -50,6 +52,7 @@ class Router():
                         elif (current_student <= students_max):
                             current_student = current_student+1
                             self.students[int(s_num)] = np.array([s_x, s_y])
+        self.no_of_stops=len(self.stops)
 
     def generate_student_near_stops(self):
         '''Calculate distance between students and stops.
@@ -216,9 +219,35 @@ class Router():
                 elif i < len(path):
                     dist += np.linalg.norm(np.array(self.stops[path[i]])-np.array(self.stops[path[i-1]]))
         return dist
+        
+    def gen_adj(self):
+        self.stop_near_stops1 = dict()
+        for k, v in list(self.stops.items()):
+            stops_distances = []
+            for kk, vv in list(self.stops.items()):
+                if v is not vv:
+                    stops_distances.extend([tuple([kk, np.linalg.norm(v-vv)])])
+            self.stop_near_stops1[k] = tuple(sorted(stops_distances, key=lambda x:x[1]))
+        return self.stop_near_stops1
+    
+    def adj_matrix(self,stop_near_stops1):
+        l=len(self.stops)
+        x = [[0 for i in range(l)] for j in range(l)]
+        for k, v in list(self.stop_near_stops1.items()):
+            i=k
+            for y in range(0,len(v)):
+                m=v[y]
+                j=m[0]
+                val=m[1]
+                x[i][j]=val
+        return(x)
 
-
-
+    def get_demand(self):
+        self.global_path_list,self.global_students_dict=self.route_local_search()
+        self.demand = [0] * self.no_of_stops
+        for i in self.global_students_dict:
+            self.demand[self.global_students_dict[i]]+=1
+        return self.demand
 
 if __name__ == '__main__':
     print('route.py')
