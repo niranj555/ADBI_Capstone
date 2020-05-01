@@ -1,6 +1,6 @@
-# ADBI_Capstone
+# Vehicle Routing Problem solved using Actor Critic method in a custom Open AI Gym environment.
 
-The following is the repo to solve a variation of Capacitative Vehicle Routing problem in a school cus routing scenario.
+The following is the repo to solve a variation of Capacitative Vehicle Routing problem in a school bus routing scenario.
 
 
 To run the given Graph Routing Open AI Gym environment for the Vehicle Routing Problem, please follow the below steps.
