@@ -28,3 +28,9 @@ To run the given Graph Routing Open AI Gym environment for the Vehicle Routing P
  6. To make the env, do
     import gym
     env = gym.make('vrp-v0')
+## Baselines
+We have implemented 3 baselines. Please go into the classic control folder and follow the following commands to run the baselines:
+
+1. Google OR Basline: `<python google-or.py>`
+2. Random Restart and Greedy Algoithm: `<python greedy.py>`
+3. Clark Wright Savings Algorithm: `<python >`
