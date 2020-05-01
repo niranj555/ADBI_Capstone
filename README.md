@@ -33,4 +33,4 @@ We have implemented 3 baselines. Please go into the classic control folder and f
 
 1. Google OR Basline: `<python google-or.py>`
 2. Random Restart and Greedy Algoithm: `<python greedy.py>`
-3. Clark Wright Savings Algorithm: `<python >`
+3. Clark Wright Savings Algorithm: `<python savings.py>`
